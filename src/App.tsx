@@ -5,7 +5,7 @@ import Checkout from "./pages/Checkout";
 import CheckoutSuccess from "./pages/CheckoutSuccess";
 import Contact from "./pages/Contact";
 import ProductPage from "./pages/ProductPage";
-import Products from "./pages/Products"; // Import Products page
+import Products from "./pages/Products";
 import Layout from "./components/Layout";
 
 const App = () => {
