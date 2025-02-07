@@ -1,5 +1,5 @@
+// CheckoutSuccess.tsx
 import { Link } from "react-router-dom";
-import "../styles/CheckoutSuccess.css";
 
 const CheckoutSuccess = () => {
   return (

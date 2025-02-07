@@ -1,7 +1,14 @@
+import { useCart } from "../store/CartContext";
 import { Link } from "react-router-dom";
 import "../styles/ProductCard.css";
 
 const ProductCard = ({ id, title, imageUrl, price, discountedPrice }: any) => {
+  const { addToCart } = useCart();
+
+  const handleAddToCart = () => {
+    addToCart({ id, title, imageUrl, discountedPrice });
+  };
+
   return (
     <div className="product-card">
       <img src={imageUrl} alt={title} className="product-card-image" />
@@ -16,7 +23,7 @@ const ProductCard = ({ id, title, imageUrl, price, discountedPrice }: any) => {
       {discountedPrice && (
         <p className="product-card-price-discount">${discountedPrice}</p>
       )}
-
+      <button onClick={handleAddToCart}>Add to Cart</button>
       {/* Link to ProductPage */}
       <Link to={`/product/${id}`} className="product-card-link">
         View Product
