@@ -1,10 +1,10 @@
-// Checkout.tsx
 import { useCart } from "../store/CartContext";
 import { Link } from "react-router-dom";
 import "../styles/Checkout.css";
 
 const Checkout = () => {
-  const { cartItems } = useCart();
+  const { cartItems, removeFromCart } = useCart(); // Access cart context
+
   const total = cartItems.reduce((sum, item) => sum + item.discountedPrice, 0);
 
   return (
@@ -14,18 +14,24 @@ const Checkout = () => {
         <p>Your cart is empty. Please add products before checking out.</p>
       ) : (
         <div>
-          <ul className="cart-list">
+          <ul className="checkout-list">
             {cartItems.map((item) => (
-              <li key={item.id} className="cart-item">
+              <li key={item.id} className="checkout-item">
+                <img
+                  className="checkout-item-image"
+                  src={item.imageUrl}
+                  alt={item.title}
+                />
                 <p>{item.title}</p>
                 <p>${item.discountedPrice}</p>
+                <button onClick={() => removeFromCart(item.id)}>Remove</button>
               </li>
             ))}
           </ul>
-          <div className="total-section">
-            <p className="total-text">Total: ${total.toFixed(2)}</p>
+          <div className="checkout-total-container">
+            <p className="checkout-total">Total: ${total.toFixed(2)}</p>
             <Link to="/checkout-success">
-              <button className="confirm-button">Confirm Checkout</button>
+              <button className="checkout-button">Proceed to Checkout</button>
             </Link>
           </div>
         </div>
