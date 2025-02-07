@@ -34,7 +34,6 @@ label {
     font-size: 1rem;
     width: 100%;
     box-sizing: border-box;
-    /* Ensures padding doesn't overflow */
 }
 
 .form-input:focus {
@@ -58,7 +57,6 @@ label {
     cursor: pointer;
     margin-top: 16px;
     box-sizing: border-box;
-    /* Ensures padding doesn't overflow */
 }
 
 .submit-button:hover {

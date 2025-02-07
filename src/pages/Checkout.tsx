@@ -1,11 +1,16 @@
+// Checkout.tsx
+
 import { useCart } from "../store/CartContext";
 import { Link } from "react-router-dom";
 import "../styles/Checkout.css";
 
 const Checkout = () => {
-  const { cartItems, removeFromCart } = useCart(); // Access cart context
+  const { cartItems, removeFromCart } = useCart();
 
-  const total = cartItems.reduce((sum, item) => sum + item.discountedPrice, 0);
+  const total = cartItems.reduce(
+    (sum, item) => sum + item.discountedPrice * item.quantity,
+    0
+  );
 
   return (
     <div className="section-padding">
@@ -25,6 +30,7 @@ const Checkout = () => {
                   />
                   <p>{item.title}</p>
                   <p>${item.discountedPrice}</p>
+                  <p>Quantity: {item.quantity}</p> {/* Display quantity */}
                   <button onClick={() => removeFromCart(item.id)}>
                     Remove
                   </button>
@@ -32,7 +38,9 @@ const Checkout = () => {
               ))}
             </ul>
             <div className="checkout-total-container">
-              <p className="checkout-total">Total: ${total.toFixed(2)}</p>
+              <p className="checkout-total">
+                Total: ${total.toFixed(2)} {/* Calculate total with quantity */}
+              </p>
               <Link to="/checkout-success">
                 <button className="checkout-button">Proceed to Checkout</button>
               </Link>

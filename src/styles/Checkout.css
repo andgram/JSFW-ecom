@@ -1,18 +1,15 @@
-/* Checkout Title */
 .checkout-title {
     font-size: 2rem;
     margin-bottom: 20px;
     font-weight: bold;
 }
 
-/* Checkout List */
 .checkout-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-/* Checkout Item */
 .checkout-item {
     display: flex;
     align-items: center;
@@ -20,7 +17,6 @@
     padding: 15px 0;
 }
 
-/* Checkout Item Image */
 .checkout-item-image {
     width: 50px;
     height: 50px;
@@ -28,7 +24,6 @@
     margin-right: 15px;
 }
 
-/* Checkout Item Title */
 .checkout-item p {
     margin: 0;
     padding: 0;
@@ -36,7 +31,6 @@
     margin-right: 15px;
 }
 
-/* Remove Button */
 .checkout-item button {
     background-color: #f44336;
     color: white;
@@ -50,20 +44,17 @@
     background-color: #d32f2f;
 }
 
-/* Checkout Total Container */
 .checkout-total-container {
     margin-top: 20px;
     text-align: right;
 }
 
-/* Checkout Total */
 .checkout-total {
     font-size: 1.25rem;
     font-weight: bold;
     margin-bottom: 20px;
 }
 
-/* Checkout Button */
 .checkout-button {
     background-color: #4caf50;
     color: white;

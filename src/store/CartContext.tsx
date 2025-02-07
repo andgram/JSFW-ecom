@@ -6,6 +6,7 @@ interface CartItem {
   title: string;
   imageUrl: string;
   discountedPrice: number;
+  quantity: number;
 }
 
 interface CartContextType {
@@ -29,7 +30,19 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   const addToCart = (product: CartItem) => {
-    setCartItems((prevItems) => [...prevItems, product]);
+    setCartItems((prevItems) => {
+      const existingItemIndex = prevItems.findIndex(
+        (item) => item.id === product.id
+      );
+
+      if (existingItemIndex !== -1) {
+        const updatedItems = [...prevItems];
+        updatedItems[existingItemIndex].quantity += 1;
+        return updatedItems;
+      }
+
+      return [...prevItems, { ...product, quantity: 1 }];
+    });
   };
 
   const removeFromCart = (productId: string) => {

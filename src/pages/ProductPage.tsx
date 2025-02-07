@@ -4,11 +4,11 @@ import { useCart } from "../store/CartContext";
 import "../styles/ProductPage.css";
 
 const ProductPage = () => {
-  const { id } = useParams(); // Get the product ID from the URL
+  const { id } = useParams();
   const [product, setProduct] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const { addToCart } = useCart(); // useCart to get the addToCart function
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -28,12 +28,12 @@ const ProductPage = () => {
     };
 
     fetchProduct();
-  }, [id]); // Re-run the fetch whenever the ID changes
+  }, [id]);
 
   if (loading) return <p>Loading product...</p>;
   if (error) return <p className="error-message">{error}</p>;
 
-  // Calculate discount percentage, but only if the prices are different
+  // Calculate discount percentage
   const calculateDiscountPercentage = (
     price: number,
     discountedPrice: number
@@ -52,10 +52,10 @@ const ProductPage = () => {
     const cartProduct = {
       id: product.id,
       title: product.title,
-      imageUrl: product.image.url, // Ensure image is passed correctly
-      discountedPrice: product.discountedPrice || product.price, // Handle discount if available
+      imageUrl: product.image.url,
+      discountedPrice: product.discountedPrice || product.price,
     };
-    addToCart(cartProduct); // Add the product to the cart
+    addToCart(cartProduct);
   };
 
   return (
@@ -89,6 +89,11 @@ const ProductPage = () => {
             product.discountedPrice !== product.price && (
               <p className="discounted-price">${product.discountedPrice}</p>
             )}
+
+          {/* Add to Cart button */}
+          <button className="add-to-cart-button" onClick={handleAddToCart}>
+            Add to Cart
+          </button>
         </div>
 
         {/* Reviews Section */}
@@ -115,13 +120,8 @@ const ProductPage = () => {
             </ul>
           </div>
         ) : (
-          <p>No reviews yet.</p> // Display this if no reviews exist
+          <p>No reviews yet.</p>
         )}
-
-        {/* Add to Cart button */}
-        <button className="add-to-cart-button" onClick={handleAddToCart}>
-          Add to Cart
-        </button>
       </div>
     </div>
   );

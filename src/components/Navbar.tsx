@@ -5,7 +5,7 @@ import "../styles/Navbar.css";
 
 const Navbar = () => {
   const { cartItems } = useCart();
-  const itemCount = cartItems.length; // Count total items in cart
+  const itemCount = cartItems.length;
 
   return (
     <header className="navbar">
