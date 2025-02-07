@@ -1,65 +1,104 @@
-/* ProductPage.css */
-.product-page-container {
-    padding: 16px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
+/* Basic Styles for Product Page */
 
 .product-title {
-    font-size: 2rem;
+    font-size: 2em;
     font-weight: bold;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
 }
 
 .product-image {
     width: 100%;
+    max-width: 500px;
+    aspect-ratio: 1/1;
     height: auto;
+    margin-bottom: 20px;
     object-fit: cover;
-    max-height: 500px;
-    margin-bottom: 16px;
+    display: block;
 }
+
 
 .product-description {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    margin-bottom: 16px;
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 20px;
 }
 
-.product-price-container {
-    margin-top: 16px;
+.price-container {
+    margin-top: 20px;
 }
 
-.original-price {
-    font-size: 1.2rem;
-    font-weight: bold;
+.product-price {
+    font-size: 1.5em;
+    color: #333;
 }
 
-.original-price-text {
+.old-price {
     text-decoration: line-through;
-    color: red;
+    color: #888;
 }
 
 .discounted-price {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: green;
+    color: #f00;
+    font-size: 1.5em;
+    margin-top: 10px;
 }
 
+/* Reviews Section */
+.reviews-section {
+    margin-top: 40px;
+}
+
+.reviews-section h2 {
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+.reviews-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.review-item {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+}
+
+.review-author {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.review-rating {
+    color: #ff9900;
+}
+
+.star {
+    margin-right: 5px;
+}
+
+.review-text {
+    margin-top: 10px;
+    font-size: 1.1em;
+    color: #555;
+}
+
+/* Add to Cart button */
 .add-to-cart-button {
+    margin-top: 20px;
+    padding: 10px 20px;
     background-color: #007bff;
     color: white;
-    padding: 12px 24px;
+    font-size: 1.2em;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-    margin-top: 24px;
 }
 
 .add-to-cart-button:hover {
     background-color: #0056b3;
-}
-
-.error-message {
-    color: red;
-    font-size: 1.2rem;
 }

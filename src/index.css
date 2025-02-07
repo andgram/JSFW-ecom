@@ -6,6 +6,16 @@ body {
 }
 
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
+  margin-inline: auto;
+  width: min(90%, 70.5rem);
+}
+
+.section-padding {
+  padding: 2rem 0;
+}
+
+@media (min-width: 40em) {
+  .section-padding {
+    padding: 4rem 0;
+  }
 }

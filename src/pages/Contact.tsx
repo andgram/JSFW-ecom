@@ -41,64 +41,70 @@ const Contact = () => {
   };
 
   return (
-    <div className="contact-container">
-      <h1 className="contact-title">Contact Us</h1>
-      <form onSubmit={handleSubmit} className="contact-form">
-        <div className="form-group">
-          <label htmlFor="fullName">Full Name</label>
-          <input
-            type="text"
-            id="fullName"
-            value={formData.fullName}
-            onChange={(e) =>
-              setFormData({ ...formData, fullName: e.target.value })
-            }
-            className="form-input"
-          />
-          {errors.fullName && (
-            <p className="error-message">{errors.fullName}</p>
-          )}
-        </div>
-        <div className="form-group">
-          <label htmlFor="subject">Subject</label>
-          <input
-            type="text"
-            id="subject"
-            value={formData.subject}
-            onChange={(e) =>
-              setFormData({ ...formData, subject: e.target.value })
-            }
-            className="form-input"
-          />
-          {errors.subject && <p className="error-message">{errors.subject}</p>}
-        </div>
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            value={formData.email}
-            onChange={(e) =>
-              setFormData({ ...formData, email: e.target.value })
-            }
-            className="form-input"
-          />
-          {errors.email && <p className="error-message">{errors.email}</p>}
-        </div>
-        <div className="form-group">
-          <label htmlFor="body">Message</label>
-          <textarea
-            id="body"
-            value={formData.body}
-            onChange={(e) => setFormData({ ...formData, body: e.target.value })}
-            className="form-input"
-          />
-          {errors.body && <p className="error-message">{errors.body}</p>}
-        </div>
-        <button type="submit" className="submit-button">
-          Submit
-        </button>
-      </form>
+    <div className="section-padding">
+      <div className="contact-container">
+        <h1 className="contact-title">Contact Us</h1>
+        <form onSubmit={handleSubmit} className="contact-form">
+          <div className="form-group">
+            <label htmlFor="fullName">Full Name</label>
+            <input
+              type="text"
+              id="fullName"
+              value={formData.fullName}
+              onChange={(e) =>
+                setFormData({ ...formData, fullName: e.target.value })
+              }
+              className="form-input"
+            />
+            {errors.fullName && (
+              <p className="error-message">{errors.fullName}</p>
+            )}
+          </div>
+          <div className="form-group">
+            <label htmlFor="subject">Subject</label>
+            <input
+              type="text"
+              id="subject"
+              value={formData.subject}
+              onChange={(e) =>
+                setFormData({ ...formData, subject: e.target.value })
+              }
+              className="form-input"
+            />
+            {errors.subject && (
+              <p className="error-message">{errors.subject}</p>
+            )}
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              value={formData.email}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
+              className="form-input"
+            />
+            {errors.email && <p className="error-message">{errors.email}</p>}
+          </div>
+          <div className="form-group">
+            <label htmlFor="body">Message</label>
+            <textarea
+              id="body"
+              value={formData.body}
+              onChange={(e) =>
+                setFormData({ ...formData, body: e.target.value })
+              }
+              className="form-input"
+            />
+            {errors.body && <p className="error-message">{errors.body}</p>}
+          </div>
+          <button type="submit" className="submit-button">
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

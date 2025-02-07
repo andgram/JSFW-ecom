@@ -39,31 +39,33 @@ const HomePage = () => {
   if (error) return <p className="error">{error}</p>;
 
   return (
-    <div className="homepage-container">
-      <h1 className="title">Products</h1>
+    <div className="section-padding">
+      <div className="container">
+        <h1 className="title">Products</h1>
 
-      {/* Search Bar */}
-      <div className="search-container">
-        <input
-          type="text"
-          placeholder="Search for a product..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="search-input"
-        />
-      </div>
-
-      <div className="product-grid">
-        {filteredProducts.map((product) => (
-          <ProductCard
-            key={product.id}
-            id={product.id}
-            title={product.title}
-            imageUrl={product.image.url}
-            price={product.price}
-            discountedPrice={product.discountedPrice}
+        {/* Search Bar */}
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="Search for a product..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="search-input"
           />
-        ))}
+        </div>
+
+        <div className="product-grid">
+          {filteredProducts.map((product) => (
+            <ProductCard
+              key={product.id}
+              id={product.id}
+              title={product.title}
+              imageUrl={product.image.url}
+              price={product.price}
+              discountedPrice={product.discountedPrice}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

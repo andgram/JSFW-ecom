@@ -32,32 +32,61 @@ const ProductPage = () => {
   if (error) return <p className="error-message">{error}</p>;
 
   return (
-    <div className="product-page-container">
-      <h1 className="product-title">{product.title}</h1>
-      <img
-        src={product.image.url}
-        alt={product.title}
-        className="product-image"
-      />
-      <p className="product-description">{product.description}</p>
+    <div className="section-padding">
+      <div className="container">
+        <h1 className="product-title">{product.title}</h1>
+        <img
+          src={product.image.url}
+          alt={product.title}
+          className="product-image"
+        />
+        <p className="product-description">{product.description}</p>
 
-      <div className="product-price-container">
-        <p className="original-price">
-          {product.discountedPrice ? (
-            <span className="line-through original-price-text">
-              ${product.price}
-            </span>
-          ) : (
-            <span>${product.price}</span>
+        <div className="product-price-container">
+          <p className="original-price">
+            {product.discountedPrice ? (
+              <span className="line-through original-price-text">
+                ${product.price}
+              </span>
+            ) : (
+              <span>${product.price}</span>
+            )}
+          </p>
+          {product.discountedPrice && (
+            <p className="discounted-price">${product.discountedPrice}</p>
           )}
-        </p>
-        {product.discountedPrice && (
-          <p className="discounted-price">${product.discountedPrice}</p>
-        )}
-      </div>
+        </div>
 
-      {/* Add to Cart button */}
-      <button className="add-to-cart-button">Add to Cart</button>
+        {/* Reviews Section */}
+        {product.reviews && product.reviews.length > 0 ? (
+          <div className="reviews-section">
+            <h2>Customer Reviews</h2>
+            <ul className="reviews-list">
+              {product.reviews.map((review, index) => (
+                <li key={review.id} className="review-item">
+                  <div className="review-header">
+                    <span className="review-author">{review.username}</span>
+                    <span className="review-rating">
+                      {Array.from({ length: review.rating }).map((_, idx) => (
+                        <span key={idx} className="star">
+                          ★
+                        </span>
+                      ))}
+                    </span>
+                  </div>
+                  <p className="review-text">{review.description}</p>{" "}
+                  {/* Displaying comment */}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <p>No reviews yet.</p> // Display this if no reviews exist
+        )}
+
+        {/* Add to Cart button */}
+        <button className="add-to-cart-button">Add to Cart</button>
+      </div>
     </div>
   );
 };
