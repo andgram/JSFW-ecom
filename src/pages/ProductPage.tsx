@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useCart } from "../store/CartContext";
 import "../styles/ProductPage.css";
 
 const ProductPage = () => {
@@ -7,6 +8,7 @@ const ProductPage = () => {
   const [product, setProduct] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const { addToCart } = useCart(); // useCart to get the addToCart function
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -44,6 +46,17 @@ const ProductPage = () => {
     product.price,
     product.discountedPrice
   );
+
+  // Handler to add product to cart
+  const handleAddToCart = () => {
+    const cartProduct = {
+      id: product.id,
+      title: product.title,
+      imageUrl: product.image.url, // Ensure image is passed correctly
+      discountedPrice: product.discountedPrice || product.price, // Handle discount if available
+    };
+    addToCart(cartProduct); // Add the product to the cart
+  };
 
   return (
     <div className="section-padding">
@@ -106,7 +119,9 @@ const ProductPage = () => {
         )}
 
         {/* Add to Cart button */}
-        <button className="add-to-cart-button">Add to Cart</button>
+        <button className="add-to-cart-button" onClick={handleAddToCart}>
+          Add to Cart
+        </button>
       </div>
     </div>
   );

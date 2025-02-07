@@ -17,24 +17,38 @@ const Contact = () => {
 
   const validate = () => {
     const newErrors = { fullName: "", subject: "", email: "", body: "" };
+    let isValid = true;
 
-    if (formData.fullName.length < 3)
+    if (formData.fullName.trim().length < 3) {
       newErrors.fullName = "Full Name must be at least 3 characters.";
-    if (formData.subject.length < 3)
+      isValid = false;
+    }
+    if (formData.subject.trim().length < 3) {
       newErrors.subject = "Subject must be at least 3 characters.";
-    if (!/\S+@\S+\.\S+/.test(formData.email))
+      isValid = false;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = "Please enter a valid email address.";
-    if (formData.body.length < 3)
-      newErrors.body = "Body must be at least 3 characters.";
+      isValid = false;
+    }
+    if (formData.body.trim().length < 3) {
+      newErrors.body = "Message must be at least 3 characters.";
+      isValid = false;
+    }
 
     setErrors(newErrors);
-    return !Object.values(newErrors).some((err) => err);
+    return isValid;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData({ ...formData, [id]: value });
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      console.log(formData);
+      console.log("Form submitted successfully:", formData);
       setFormData({ fullName: "", subject: "", email: "", body: "" });
       alert("Your message has been sent!");
     }
@@ -51,9 +65,7 @@ const Contact = () => {
               type="text"
               id="fullName"
               value={formData.fullName}
-              onChange={(e) =>
-                setFormData({ ...formData, fullName: e.target.value })
-              }
+              onChange={handleChange}
               className="form-input"
             />
             {errors.fullName && (
@@ -66,9 +78,7 @@ const Contact = () => {
               type="text"
               id="subject"
               value={formData.subject}
-              onChange={(e) =>
-                setFormData({ ...formData, subject: e.target.value })
-              }
+              onChange={handleChange}
               className="form-input"
             />
             {errors.subject && (
@@ -81,9 +91,7 @@ const Contact = () => {
               type="email"
               id="email"
               value={formData.email}
-              onChange={(e) =>
-                setFormData({ ...formData, email: e.target.value })
-              }
+              onChange={handleChange}
               className="form-input"
             />
             {errors.email && <p className="error-message">{errors.email}</p>}
@@ -93,9 +101,7 @@ const Contact = () => {
             <textarea
               id="body"
               value={formData.body}
-              onChange={(e) =>
-                setFormData({ ...formData, body: e.target.value })
-              }
+              onChange={handleChange}
               className="form-input"
             />
             {errors.body && <p className="error-message">{errors.body}</p>}
