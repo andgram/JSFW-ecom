@@ -35,7 +35,7 @@ const ProductPage = () => {
     <div className="product-page-container">
       <h1 className="product-title">{product.title}</h1>
       <img
-        src={product.imageUrl}
+        src={product.image.url}
         alt={product.title}
         className="product-image"
       />

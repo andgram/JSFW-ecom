@@ -59,7 +59,7 @@ const HomePage = () => {
             key={product.id}
             id={product.id}
             title={product.title}
-            imageUrl={product.imageUrl}
+            imageUrl={product.image.url}
             price={product.price}
             discountedPrice={product.discountedPrice}
           />
