@@ -31,6 +31,20 @@ const ProductPage = () => {
   if (loading) return <p>Loading product...</p>;
   if (error) return <p className="error-message">{error}</p>;
 
+  // Calculate discount percentage, but only if the prices are different
+  const calculateDiscountPercentage = (
+    price: number,
+    discountedPrice: number
+  ) => {
+    if (!discountedPrice || price === discountedPrice) return 0; // No discount if prices are the same
+    return Math.round(((price - discountedPrice) / price) * 100);
+  };
+
+  const discountPercentage = calculateDiscountPercentage(
+    product.price,
+    product.discountedPrice
+  );
+
   return (
     <div className="section-padding">
       <div className="container">
@@ -44,22 +58,29 @@ const ProductPage = () => {
 
         <div className="product-price-container">
           <p className="original-price">
-            {product.discountedPrice ? (
-              <span className="line-through original-price-text">
-                ${product.price}
-              </span>
+            {product.discountedPrice &&
+            product.discountedPrice !== product.price ? (
+              <>
+                <span className="line-through original-price-text">
+                  ${product.price}
+                </span>
+                <span className="discount-percentage">
+                  {discountPercentage}% OFF
+                </span>
+              </>
             ) : (
               <span>${product.price}</span>
             )}
           </p>
-          {product.discountedPrice && (
-            <p className="discounted-price">${product.discountedPrice}</p>
-          )}
+          {product.discountedPrice &&
+            product.discountedPrice !== product.price && (
+              <p className="discounted-price">${product.discountedPrice}</p>
+            )}
         </div>
 
         {/* Reviews Section */}
         {product.reviews && product.reviews.length > 0 ? (
-          <div className="reviews-section">
+          <div className="reviews-section section-padding">
             <h2>Customer Reviews</h2>
             <ul className="reviews-list">
               {product.reviews.map((review, index) => (

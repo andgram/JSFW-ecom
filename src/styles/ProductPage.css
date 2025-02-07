@@ -102,3 +102,23 @@
 .add-to-cart-button:hover {
     background-color: #0056b3;
 }
+
+.discount-percentage {
+    color: red;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.line-through {
+    text-decoration: line-through;
+}
+
+.original-price-text {
+    color: grey;
+}
+
+.discounted-price {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: green;
+}
