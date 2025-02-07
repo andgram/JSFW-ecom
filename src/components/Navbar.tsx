@@ -1,32 +1,46 @@
 import { Link } from "react-router-dom";
+import { useCart } from "../store/CartContext";
+import { FaShoppingCart } from "react-icons/fa";
 import "../styles/Navbar.css";
 
 const Navbar = () => {
+  const { cartItems } = useCart();
+  const itemCount = cartItems.length; // Count total items in cart
+
   return (
-    <nav className="navbar">
+    <header className="navbar">
       <div className="container">
-        <a className="site-logo" href="/">
-          <h3>Ecom Store</h3>
-        </a>
-        <ul className="navbar-list">
-          <li>
-            <Link to="/" className="navbar-link">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to="/contact" className="navbar-link">
-              Contact
-            </Link>
-          </li>
-          <li>
-            <Link to="/checkout" className="navbar-link">
-              Cart
-            </Link>
-          </li>
-        </ul>
+        <nav className="nav">
+          {/* Logo */}
+          <Link to="/" className="logo">
+            Ecom Store
+          </Link>
+
+          {/* Navigation Links */}
+          <ul className="nav-list">
+            <li>
+              <Link to="/" className="nav-link">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact" className="nav-link">
+                Contact
+              </Link>
+            </li>
+            {/* Cart Icon with Badge */}
+            <li className="cart-container">
+              <Link to="/checkout" className="cart-link">
+                <FaShoppingCart className="cart-icon" />
+                {itemCount > 0 && (
+                  <span className="cart-badge">{itemCount}</span>
+                )}
+              </Link>
+            </li>
+          </ul>
+        </nav>
       </div>
-    </nav>
+    </header>
   );
 };
 

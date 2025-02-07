@@ -2,11 +2,8 @@
     margin-inline: auto;
     width: min(90%, 35rem);
     padding: 20px;
-    /* Optional padding */
     box-sizing: border-box;
-    /* Ensures padding doesn't affect the width */
     overflow: visible;
-    /* Makes sure no content is hidden */
 }
 
 .contact-title {
