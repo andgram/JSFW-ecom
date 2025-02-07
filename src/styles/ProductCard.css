@@ -1,0 +1,55 @@
+/* ProductCard.css */
+.product-card {
+    border: 1px solid #ddd;
+    /* Equivalent to border */
+    border-radius: 8px;
+    /* Equivalent to rounded-lg */
+    padding: 16px;
+    /* Equivalent to p-4 */
+    background-color: white;
+}
+
+.product-card-image {
+    width: 100%;
+    /* Equivalent to w-full */
+    height: 256px;
+    /* Equivalent to h-64 */
+    object-fit: cover;
+    /* Equivalent to object-cover */
+    margin-bottom: 16px;
+    /* Equivalent to mb-4 */
+}
+
+.product-card-title {
+    font-weight: bold;
+    /* Equivalent to font-bold */
+    font-size: 1.125rem;
+    /* Equivalent to text-lg */
+}
+
+.product-card-price {
+    color: #6b7280;
+    /* Equivalent to text-gray-500 */
+}
+
+.product-card-price-old {
+    text-decoration: line-through;
+    color: #f87171;
+    /* Equivalent to text-red-500 */
+}
+
+.product-card-price-discount {
+    color: #16a34a;
+    /* Equivalent to text-green-500 */
+}
+
+.product-card-link {
+    color: #2563eb;
+    /* Equivalent to text-blue-600 */
+    text-decoration: none;
+}
+
+.product-card-link:hover {
+    text-decoration: underline;
+    /* Add hover effect */
+}

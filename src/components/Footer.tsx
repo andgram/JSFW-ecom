@@ -1,6 +1,8 @@
+import "../styles/Footer.css";
+
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white text-center p-4 mt-8">
+    <footer className="footer">
       <p>© 2024 My Ecom Store</p>
     </footer>
   );

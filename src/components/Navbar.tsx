@@ -1,20 +1,24 @@
 import { Link } from "react-router-dom";
+import "../styles/Navbar.css";
 
 const Navbar = () => {
   return (
-    <nav className="bg-blue-600 p-4 text-white flex justify-between items-center">
-      <ul className="flex space-x-4">
+    <nav className="navbar">
+      <ul className="navbar-list">
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/" className="navbar-link">
+            Home
+          </Link>
         </li>
         <li>
-          <Link to="/products">Products</Link> {/* Link to Products list */}
+          <Link to="/cart" className="navbar-link">
+            Cart
+          </Link>
         </li>
         <li>
-          <Link to="/cart">Cart</Link> {/* Link to Cart page */}
-        </li>
-        <li>
-          <Link to="/contact">Contact</Link> {/* Link to Contact page */}
+          <Link to="/contact" className="navbar-link">
+            Contact
+          </Link>
         </li>
       </ul>
     </nav>

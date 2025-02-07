@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "../styles/Cart.css";
 
 const cart = [
   {
@@ -19,31 +20,29 @@ const Cart = () => {
   const total = cart.reduce((sum, product) => sum + product.discountedPrice, 0);
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl mb-4">Your Cart</h1>
+    <div className="cart-container">
+      <h1 className="cart-title">Your Cart</h1>
       {cart.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
         <div>
-          <ul>
+          <ul className="cart-list">
             {cart.map((product, index) => (
-              <li key={index} className="border-b py-2">
+              <li key={index} className="cart-item">
                 <img
                   src={product.imageUrl}
                   alt={product.title}
-                  className="w-16 inline-block"
+                  className="cart-item-image"
                 />
                 <p>{product.title}</p>
                 <p>${product.discountedPrice}</p>
               </li>
             ))}
           </ul>
-          <div className="mt-4">
-            <p className="text-xl">Total: ${total.toFixed(2)}</p>
+          <div className="cart-total-container">
+            <p className="cart-total">Total: ${total.toFixed(2)}</p>
             <Link to="/checkout">
-              <button className="bg-blue-600 text-white p-2 mt-4">
-                Proceed to Checkout
-              </button>
+              <button className="cart-button">Proceed to Checkout</button>
             </Link>
           </div>
         </div>

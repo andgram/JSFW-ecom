@@ -5,7 +5,6 @@ import Checkout from "./pages/Checkout";
 import CheckoutSuccess from "./pages/CheckoutSuccess";
 import Contact from "./pages/Contact";
 import ProductPage from "./pages/ProductPage";
-import Products from "./pages/Products";
 import Layout from "./components/Layout";
 
 const App = () => {
@@ -18,9 +17,8 @@ const App = () => {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/checkout-success" element={<CheckoutSuccess />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/products" element={<Products />} />{" "}
-          {/* Products list */}
-          <Route path="/products/:id" element={<ProductPage />} />{" "}
+          <Route path="/product/:id" element={<ProductPage />} />{" "}
+          {/* Dynamic route for product */}
           {/* Single product */}
         </Routes>
       </Layout>

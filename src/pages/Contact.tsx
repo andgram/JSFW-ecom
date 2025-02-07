@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../styles/Contact.css";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -40,10 +41,10 @@ const Contact = () => {
   };
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl mb-4">Contact Us</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className="contact-container">
+      <h1 className="contact-title">Contact Us</h1>
+      <form onSubmit={handleSubmit} className="contact-form">
+        <div className="form-group">
           <label htmlFor="fullName">Full Name</label>
           <input
             type="text"
@@ -52,11 +53,13 @@ const Contact = () => {
             onChange={(e) =>
               setFormData({ ...formData, fullName: e.target.value })
             }
-            className="border p-2 w-full"
+            className="form-input"
           />
-          {errors.fullName && <p className="text-red-600">{errors.fullName}</p>}
+          {errors.fullName && (
+            <p className="error-message">{errors.fullName}</p>
+          )}
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="subject">Subject</label>
           <input
             type="text"
@@ -65,11 +68,11 @@ const Contact = () => {
             onChange={(e) =>
               setFormData({ ...formData, subject: e.target.value })
             }
-            className="border p-2 w-full"
+            className="form-input"
           />
-          {errors.subject && <p className="text-red-600">{errors.subject}</p>}
+          {errors.subject && <p className="error-message">{errors.subject}</p>}
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
             type="email"
@@ -78,21 +81,21 @@ const Contact = () => {
             onChange={(e) =>
               setFormData({ ...formData, email: e.target.value })
             }
-            className="border p-2 w-full"
+            className="form-input"
           />
-          {errors.email && <p className="text-red-600">{errors.email}</p>}
+          {errors.email && <p className="error-message">{errors.email}</p>}
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="body">Message</label>
           <textarea
             id="body"
             value={formData.body}
             onChange={(e) => setFormData({ ...formData, body: e.target.value })}
-            className="border p-2 w-full"
+            className="form-input"
           />
-          {errors.body && <p className="text-red-600">{errors.body}</p>}
+          {errors.body && <p className="error-message">{errors.body}</p>}
         </div>
-        <button type="submit" className="bg-blue-600 text-white p-2 mt-4">
+        <button type="submit" className="submit-button">
           Submit
         </button>
       </form>
