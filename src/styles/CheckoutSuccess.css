@@ -1,9 +1,6 @@
 /* CheckoutSuccess.css */
 .checkout-success-container {
-    padding: 16px;
     text-align: center;
-    max-width: 600px;
-    margin: 0 auto;
 }
 
 .checkout-success-title {
