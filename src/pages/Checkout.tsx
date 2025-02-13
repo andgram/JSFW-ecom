@@ -1,13 +1,22 @@
-// Checkout.tsx
-
 import { useCart } from "../store/CartContext";
 import { Link } from "react-router-dom";
 import "../styles/Checkout.css";
 
-const Checkout = () => {
-  const { cartItems, removeFromCart } = useCart();
+type CartItem = {
+  id: string;
+  title: string;
+  imageUrl: string;
+  discountedPrice: number;
+  quantity: number;
+};
 
-  const total = cartItems.reduce(
+const Checkout = () => {
+  const { cartItems, removeFromCart } = useCart() as {
+    cartItems: CartItem[];
+    removeFromCart: (id: string) => void;
+  };
+
+  const total: number = cartItems.reduce(
     (sum, item) => sum + item.discountedPrice * item.quantity,
     0
   );
@@ -16,7 +25,7 @@ const Checkout = () => {
     <div className="section-padding">
       <div className="container">
         <h1 className="checkout-title">Checkout</h1>
-        {cartItems.length === 0 ? (
+        {cartItems?.length === 0 ? (
           <p>Your cart is empty. Please add products before checking out.</p>
         ) : (
           <div>
@@ -29,7 +38,7 @@ const Checkout = () => {
                     alt={item.title}
                   />
                   <p>{item.title}</p>
-                  <p>${item.discountedPrice}</p>
+                  <p>${item.discountedPrice.toFixed(2)}</p>
                   <p>Quantity: {item.quantity}</p> {/* Display quantity */}
                   <button onClick={() => removeFromCart(item.id)}>
                     Remove

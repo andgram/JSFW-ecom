@@ -2,11 +2,20 @@ import { useState, useEffect } from "react";
 import ProductCard from "../components/ProductCard";
 import "../styles/HomePage.css";
 
+// Define the type for a product
+type Product = {
+  id: string;
+  title: string;
+  image: { url: string };
+  price: number;
+  discountedPrice: number;
+};
+
 const HomePage = () => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>("");
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   useEffect(() => {
     const fetchProducts = async () => {

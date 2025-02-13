@@ -1,21 +1,38 @@
-import { useState } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 import "../styles/Contact.css";
 
+// Define types for formData and errors
+type FormData = {
+  fullName: string;
+  subject: string;
+  email: string;
+  body: string;
+};
+
+type FormErrors = {
+  fullName: string;
+  subject: string;
+  email: string;
+  body: string;
+};
+
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    fullName: "",
-    subject: "",
-    email: "",
-    body: "",
-  });
-  const [errors, setErrors] = useState({
+  const [formData, setFormData] = useState<FormData>({
     fullName: "",
     subject: "",
     email: "",
     body: "",
   });
 
-  const validate = () => {
+  const [errors, setErrors] = useState<FormErrors>({
+    fullName: "",
+    subject: "",
+    email: "",
+    body: "",
+  });
+
+  // Validation function
+  const validate = (): boolean => {
     const newErrors = { fullName: "", subject: "", email: "", body: "" };
     let isValid = true;
 
@@ -40,12 +57,16 @@ const Contact = () => {
     return isValid;
   };
 
-  const handleChange = (e) => {
+  // Handle input changes
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { id, value } = e.target;
     setFormData({ ...formData, [id]: value });
   };
 
-  const handleSubmit = (e) => {
+  // Handle form submit
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (validate()) {
       console.log("Form submitted successfully:", formData);

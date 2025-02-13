@@ -20,7 +20,7 @@ const ProductCard = ({ id, title, imageUrl, price, discountedPrice }: any) => {
   );
 
   const handleAddToCart = () => {
-    addToCart({ id, title, imageUrl, discountedPrice });
+    addToCart({ id, title, imageUrl, discountedPrice, quantity: 1 });
   };
 
   return (

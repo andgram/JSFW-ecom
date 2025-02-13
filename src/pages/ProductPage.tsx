@@ -3,11 +3,29 @@ import { useState, useEffect } from "react";
 import { useCart } from "../store/CartContext";
 import "../styles/ProductPage.css";
 
+// Define the types for product and review
+type Review = {
+  id: string;
+  username: string;
+  rating: number;
+  description: string;
+};
+
+type Product = {
+  id: string;
+  title: string;
+  image: { url: string };
+  description: string;
+  price: number;
+  discountedPrice: number | null;
+  reviews: Review[];
+};
+
 const ProductPage = () => {
-  const { id } = useParams();
-  const [product, setProduct] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const { id } = useParams<{ id: string }>();
+  const [product, setProduct] = useState<Product | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>("");
   const { addToCart } = useCart();
 
   useEffect(() => {
@@ -33,12 +51,14 @@ const ProductPage = () => {
   if (loading) return <p>Loading product...</p>;
   if (error) return <p className="error-message">{error}</p>;
 
+  if (!product) return <p>Product not found.</p>;
+
   // Calculate discount percentage
   const calculateDiscountPercentage = (
     price: number,
-    discountedPrice: number
+    discountedPrice: number | null
   ) => {
-    if (!discountedPrice || price === discountedPrice) return 0; // No discount if prices are the same
+    if (!discountedPrice || price === discountedPrice) return 0;
     return Math.round(((price - discountedPrice) / price) * 100);
   };
 
@@ -54,6 +74,7 @@ const ProductPage = () => {
       title: product.title,
       imageUrl: product.image.url,
       discountedPrice: product.discountedPrice || product.price,
+      quantity: 1,
     };
     addToCart(cartProduct);
   };
@@ -101,7 +122,7 @@ const ProductPage = () => {
           <div className="reviews-section section-padding">
             <h2>Customer Reviews</h2>
             <ul className="reviews-list">
-              {product.reviews.map((review, index) => (
+              {product.reviews.map((review) => (
                 <li key={review.id} className="review-item">
                   <div className="review-header">
                     <span className="review-author">{review.username}</span>
